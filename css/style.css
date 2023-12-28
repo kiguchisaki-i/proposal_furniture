@@ -256,6 +256,25 @@ main section.products .products__grid a:nth-of-type(3n) {
   position: relative;
   top: clamp(50px, 16.25vw, 260px);
 }
+main section.products .products__grid a.display {
+  position: relative;
+}
+main section.products .products__grid a.display::before {
+  content: "";
+  display: block;
+  background-color: #fff;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  transition: 1600ms;
+  transition-delay: 0.5s;
+}
+main section.products .products__grid a.display.is-done::before {
+  width: 0;
+}
 main section.contact {
   background-color: var(--secondary-color);
   padding-top: clamp(32px, 5.33vw, 64px);
@@ -323,4 +342,6 @@ footer {
   transform: scale(1);
 }
 
-/*test code!*//*# sourceMappingURL=style.css.map */
+#furnitureCanvasWrap {
+  max-width: 100%;
+}/*# sourceMappingURL=style.css.map */

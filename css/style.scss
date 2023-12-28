@@ -56,7 +56,8 @@ table {
 }
 $z-index: (
     about-pc: -1,
-    header-pc: 3
+    header-pc: 3,
+    productitem-pc: 2,
 );
 
 header {
@@ -279,6 +280,30 @@ main {
                         position: relative;
                         top: clamp(50px, 16.25vw, 260px);
                     }
+
+                    &.display{
+                        position: relative;
+
+                        &::before{
+                            content: '';
+                            display: block;
+                            background-color: #fff;
+                            height: 100%;
+                            width: 100%;
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            z-index: map-get($z-index, 'productitem-pc' );
+                            transition: 1600ms;
+                            transition-delay: .5s;
+                        }
+
+                        &.is-done{
+                            &::before{
+                                width: 0;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -354,4 +379,6 @@ footer {
     transform: scale(1);
 }
 
-/*test code!*/
+#furnitureCanvasWrap{
+    max-width: 100%;
+}
