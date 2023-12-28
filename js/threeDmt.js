@@ -1,64 +1,77 @@
-import * as THREE from '../three';
+import * as THREE from "https://unpkg.com/three@0.126.1/build/three.module.js";
+import { OrbitControls } from "https://unpkg.com/three@0.126.1/examples/jsm/controls/OrbitControls.js";
+import { GLTFLoader } from "https://unpkg.com/three@0.126.1/examples/jsm/loaders/GLTFLoader.js";
 
-window.addEventListener('DOMContentLoaded', init);
+let camera;
+let scene;
+let renderer;
+let model;
+
+init();
+animate();
 
 function init() {
-    const renderer = new THREE.WebGLRenderer({
-        canvas: document.querySelector('#furnitureCanvas'),
+    // レンダラー
+    renderer = new THREE.WebGLRenderer({
         alpha: true,
+        antialias: true,
     });
+    renderer.setClearColor(new THREE.Color(0xffffff));
+    renderer.setSize(window.innerWidth, window.innerHeight);
 
-    const width = document.getElementById('furnitureCanvasWrap').getBoundingClientRect().width;
-    const height = document.getElementById('furnitureCanvasWrap').getBoundingClientRect().height;
-    renderer.setPixelRatio(1);
-    renderer.setSize(width, height);
+    document.getElementById("furnitureCanvas").appendChild(renderer.domElement);
 
-    const scene = new THREE.Scene();
+    // シーンの作成
+    scene = new THREE.Scene();
 
-    const camera = new THREE.PerspectiveCamera(45, width / height, 1, 10000);
-    camera.position.set(4707, 2121, 3237);
+    // カメラの作成
+    camera = new THREE.PerspectiveCamera(
+        45,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1000
+    );
 
-    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    // カメラセット
+    camera.position.set(-20, 30, 50);
+    camera.lookAt(new THREE.Vector3(0, 10, 0));
 
-    const loader = new THREE.GLTFLoader();
-    const url = 'object/sofa.glb';
+    // 滑らかにカメラコントローラーを制御する
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.2;
 
-    const w_height = window.innerHeight;
+    // 光源
+    const dirLight = new THREE.SpotLight(0xffffff, 1.5); // color, 強度
+    dirLight.position.set(-20, 30, 30);
+    scene.add(dirLight);
 
-    let model = null;
+    // glbファイルの読み込み
+    const loader = new GLTFLoader();
+
     loader.load(
-        url,
+        "../object/sofa.glb",
         function (gltf) {
             model = gltf.scene;
-            model.scale.set(100.0, 100.0, 100.0);
-            model.position.set(0, (w_height / 3 * -1), 0);
-            scene.add(gltf.scene);
+            model.traverse((object) => {
+                // モデルの構成要素
+                if (object.isMesh) {
+                    // その構成要素がメッシュだったら
+                    object.material.transparent = true; // 透明許可
+                    object.material.opacity = 0.8; // 透過
+                    object.material.depthTest = true; // 陰影で消える部分
+                }
+            });
+            scene.add(model);
         },
-        function (error) {
-            console.log('An error happened');
-            console.log(error);
+        undefined,
+        function (e) {
+            console.error(e);
         }
     );
-    renderer.gammaOutput = true;
-    renderer.gammaFactor = 2.2;
+}
 
-    const light = new THREE.DirectionalLight(0xFFFFFF);
-    light.intensity = 1;
-    light.position.set(3, 10, 1);
-    scene.add(light);
-
-    const ambient = new THREE.AmbientLight(0xf8f8ff, 0.7);
-    scene.add(ambient);
-
-    tick();
-
-    function tick() {
-        controls.update();
-
-        if (model != null) {
-            console.log(model);
-        }
-        renderer.render(scene, camera);
-        requestAnimationFrame(tick);
-    }
+function animate() {
+    requestAnimationFrame(animate);
+    renderer.render(scene, camera);
 }
