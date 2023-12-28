@@ -343,8 +343,13 @@ footer {
 }
 
 #furnitureCanvasWrap {
-  max-width: 100%;
   position: fixed;
   left: 0;
   top: 0;
+}
+#furnitureCanvasWrap canvas {
+  max-width: 40vw;
+  max-height: 40vw;
+  -o-object-fit: contain;
+     object-fit: contain;
 }/*# sourceMappingURL=style.css.map */

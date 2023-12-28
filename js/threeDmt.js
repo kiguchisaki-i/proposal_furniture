@@ -19,7 +19,7 @@ function init() {
     renderer.setClearColor(new THREE.Color(0xffffff));
     renderer.setSize(window.innerWidth, window.innerHeight);
 
-    document.getElementById("furnitureCanvas").appendChild(renderer.domElement);
+    document.getElementById("furnitureCanvasWrap").appendChild(renderer.domElement);
 
     // シーンの作成
     scene = new THREE.Scene();
@@ -31,6 +31,8 @@ function init() {
         0.1,
         1000
     );
+
+    camera.alpha = true;
 
     // カメラセット
     camera.position.set(-20, 30, 50);
@@ -50,7 +52,7 @@ function init() {
     const loader = new GLTFLoader();
 
     loader.load(
-        "../object/sofa.glb",
+        "./object/sofa.glb",
         function (gltf) {
             model = gltf.scene;
             model.traverse((object) => {

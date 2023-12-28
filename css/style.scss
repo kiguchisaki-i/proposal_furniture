@@ -56,8 +56,9 @@ table {
 }
 $z-index: (
     about-pc: -1,
-    header-pc: 3,
     productitem-pc: 2,
+    header-pc: 3,
+    
 );
 
 header {
@@ -144,8 +145,6 @@ header {
             }
         }
     }
-
-    
 }
 main {
     h2 {
@@ -366,10 +365,7 @@ footer {
     height: 152px;
     width: 152px;
     margin: -80px 0 0 -80px;
-    transition:
-        transform 0.3s,
-        opacity 0.3s,
-        visibility 0.3s;
+    transition: transform 0.3s, opacity 0.3s, visibility 0.3s;
     pointer-events: none;
 }
 
@@ -380,9 +376,15 @@ footer {
 }
 
 #furnitureCanvasWrap{
-    max-width: 100%;
+    
     
     position: fixed;
     left: 0;
     top: 0;
+
+    canvas{
+        max-width: 40vw;
+    max-height: 40vw;
+        object-fit: contain;
+    }
 }
