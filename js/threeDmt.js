@@ -16,7 +16,8 @@ function init() {
         alpha: true,
         antialias: true,
     });
-    renderer.setClearColor(new THREE.Color(0xffffff));
+    renderer.setClearColor(0x000000, 0); 
+    renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
 
     document.getElementById("furnitureCanvasWrap").appendChild(renderer.domElement);
