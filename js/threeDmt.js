@@ -7,19 +7,53 @@ let renderer;
 let model;
 let dirLight;
 
+let inertialScroll = 0;
+let inertialScrollPercent = 0;
+
+let targetRotation = 0;
+
 init();
 animate();
+
+function setScrollPercent() {
+    inertialScroll +=
+        ((document.documentElement.scrollTop || document.body.scrollTop) -
+            inertialScroll) *
+        0.08;
+    inertialScrollPercent = (
+        (inertialScroll /
+            ((document.documentElement.scrollHeight ||
+                document.body.scrollHeight) -
+                document.documentElement.clientHeight)) *
+        100
+    ).toFixed(2);
+
+    const scroll =
+        ((document.documentElement.scrollTop || document.body.scrollTop) /
+            ((document.documentElement.scrollHeight ||
+                document.body.scrollHeight) -
+                document.documentElement.clientHeight)) *
+        100;
+    document.getElementById("percent").innerText = inertialScrollPercent;
+    document.getElementById("scroll").innerText = Number(scroll).toFixed(2);
+}
 
 function init() {
     renderer = new THREE.WebGLRenderer({
         alpha: true,
         antialias: true,
+        physicallyCorrectLights: true,
     });
-    renderer.setClearColor(0x000000, 0); 
+    renderer.setClearColor(0x000000, 0);
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.outputEncoding = THREE.sRGBEncoding;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    
 
-    document.getElementById("furnitureCanvasWrap").appendChild(renderer.domElement);
+    document
+        .getElementById("furnitureCanvasWrap")
+        .appendChild(renderer.domElement);
 
     scene = new THREE.Scene();
 
@@ -27,17 +61,11 @@ function init() {
         45,
         window.innerWidth / window.innerHeight,
         0.1,
-        1000
+        10000
     );
 
-    camera.position.set(-20, 30, 50);
-    camera.lookAt(new THREE.Vector3(0, 10, 0));
-
-    // 注意: OrbitControls を使わないことで削除
-    // const controls = new OrbitControls(camera, renderer.domElement);
-    // controls.enableDamping = true;
-    // controls.dampingFactor = 0.2;
-    // controls.enableZoom = false;
+    camera.position.set(40, 25, -85);
+    camera.lookAt(new THREE.Vector3(0, 20, -40));
 
     dirLight = new THREE.SpotLight(0xffffff, 1.5);
     dirLight.position.copy(camera.position);
@@ -69,19 +97,25 @@ function init() {
         }
     );
 
-    // イベントリスナーを追加して、ユーザーのアクションを監視
-    window.addEventListener('scroll', onScroll);
-    window.addEventListener('resize', onResize);
+    window.addEventListener("scroll", function () {
+        onScroll();
+        setScrollPercent();
+    });
+    window.addEventListener("resize", onResize);
+
+    window.addEventListener("scroll", onScroll);
+    window.addEventListener("resize", onResize);
 }
 
 function onScroll() {
-    // スクロールイベントが発生した際の処理を記述
-    // ここに物体の動きに関するコードを追加
+    const scrollPosition = window.scrollY;
+    targetRotation = (scrollPosition * -Math.PI) / -360;
 }
 
 function onResize() {
-    // リサイズイベントが発生した際の処理を記述
-    // カメラやレンダラーのサイズ調整などを行うことが一般的
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
 function animate() {
@@ -89,7 +123,9 @@ function animate() {
 
     dirLight.position.copy(camera.position);
 
-    // ここに物体のアニメーションに関するコードを追加
+    if (model) {
+        model.rotation.y += (targetRotation - model.rotation.y) * 0.1;
+    }
 
     renderer.render(scene, camera);
 }
