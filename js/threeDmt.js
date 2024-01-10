@@ -15,7 +15,7 @@ function init() {
         alpha: true,
         antialias: true,
     });
-    renderer.setClearColor(0x000000, 0); 
+    renderer.setClearColor(0x000000, 0);
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
 
@@ -27,11 +27,11 @@ function init() {
         45,
         window.innerWidth / window.innerHeight,
         0.1,
-        1000
+        10000
     );
 
-    camera.position.set(-20, 30, 50);
-    camera.lookAt(new THREE.Vector3(0, 10, 0));
+    camera.position.set(40, 25, -85);
+    camera.lookAt(new THREE.Vector3(0, 20, -40));
 
     // 注意: OrbitControls を使わないことで削除
     // const controls = new OrbitControls(camera, renderer.domElement);
@@ -76,7 +76,17 @@ function init() {
 
 function onScroll() {
     // スクロールイベントが発生した際の処理を記述
+
+    // スクロール位置取得
+    const scrollPosition = window.scrollY;
+
+    // 回転計算
+    const rotationAngle = (scrollPosition * -Math.PI) / -360;
+
     // ここに物体の動きに関するコードを追加
+    if (model) {
+        model.rotation.y = rotationAngle;
+    }
 }
 
 function onResize() {
