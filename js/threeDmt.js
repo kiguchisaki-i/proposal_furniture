@@ -119,11 +119,11 @@ function onScroll() {
     const isProductsVisible = productsRect.top <= window.innerHeight && productsRect.bottom >= 0;
 
     if (isAboutVisible) {
-        targetRotation = (scrollPosition * -Math.PI) / -900;
+        targetRotation = (scrollPosition * -Math.PI) / -2000;
     } else if (isProductsVisible) {
         targetRotation = (scrollPosition * -Math.PI) / -600;
     } else {
-        targetRotation = (scrollPosition * -Math.PI) / -360;
+        targetRotation = (scrollPosition * -Math.PI) / -500;
     }
 }
 
