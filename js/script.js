@@ -54,7 +54,9 @@ window.addEventListener("scroll", () => {
 //z-index & opacity
 document.addEventListener("DOMContentLoaded", function () {
     var productsGridElement = document.querySelector(".products__grid");
-    var furnitureCanvasWrapElement = document.getElementById("furnitureCanvasWrap");
+    var furnitureCanvasWrapElement = document.getElementById(
+        "furnitureCanvasWrap"
+    );
     var contactElement = document.getElementById("contact");
     var hasAnimated = false;
 
@@ -63,29 +65,65 @@ document.addEventListener("DOMContentLoaded", function () {
         var contactRect = contactElement.getBoundingClientRect();
         var windowHeight = window.innerHeight;
 
-        if (!hasAnimated && productsGridRect.bottom >= windowHeight * 0.05 && productsGridRect.top <= windowHeight) {
-            furnitureCanvasWrapElement.style.transition = "opacity 1s, z-index 0.8s";
+        if (
+            !hasAnimated &&
+            productsGridRect.bottom >= windowHeight * 0.05 &&
+            productsGridRect.top <= windowHeight
+        ) {
+            furnitureCanvasWrapElement.style.transition =
+                "opacity 1s, z-index 0.8s";
             furnitureCanvasWrapElement.style.opacity = "0";
             furnitureCanvasWrapElement.style.zIndex = "-2";
 
             setTimeout(function () {
-                furnitureCanvasWrapElement.style.transition = "opacity 1s, z-index 0.8s";
+                furnitureCanvasWrapElement.style.transition =
+                    "opacity 1s, z-index 0.8s";
                 furnitureCanvasWrapElement.style.opacity = "1";
             }, 500);
 
             hasAnimated = true;
-        } else if (hasAnimated && (productsGridRect.bottom < windowHeight * 0.1 || productsGridRect.top > windowHeight)) {
-            furnitureCanvasWrapElement.style.transition = "opacity 1s, z-index 0.8s";
+        } else if (
+            hasAnimated &&
+            (productsGridRect.bottom < windowHeight * 0.1 ||
+                productsGridRect.top > windowHeight)
+        ) {
+            furnitureCanvasWrapElement.style.transition =
+                "opacity 1s, z-index 0.8s";
             furnitureCanvasWrapElement.style.opacity = "1";
             furnitureCanvasWrapElement.style.zIndex = "";
             hasAnimated = false;
         }
 
         if (contactRect.top <= windowHeight && contactRect.bottom >= 0) {
-            furnitureCanvasWrapElement.style.transition = "opacity 1s, z-index 0.8s";
+            furnitureCanvasWrapElement.style.transition =
+                "opacity 1s, z-index 0.8s";
             furnitureCanvasWrapElement.style.opacity = "0";
             furnitureCanvasWrapElement.style.zIndex = "-2";
         } else {
         }
     });
+});
+
+/* parallax */
+const targets = document.querySelectorAll(".parallax");
+targets.forEach((target) => {
+    gsap.fromTo(
+        target.querySelector("img"),
+        {
+            y: 0,
+            scale: 1.3,
+        },
+        {
+            y: -60,
+            scale: 1, 
+            ease: "none",
+            scrollTrigger: {
+                trigger: target,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1,
+                // markers: true,
+            },
+        }
+    );
 });
