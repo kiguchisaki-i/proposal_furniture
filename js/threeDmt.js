@@ -64,8 +64,8 @@ renderer.toneMapping = THREE.ACESFilmicToneMapping;
         10000
     );
 
-    camera.position.set(40, 25, -85);
-    camera.lookAt(new THREE.Vector3(0, 20, -40));
+    camera.position.set(-20, 30, 50);
+    camera.lookAt(new THREE.Vector3(0, 10, 0));
 
     dirLight = new THREE.SpotLight(0xffffff, 1.5);
     dirLight.position.copy(camera.position);
@@ -119,7 +119,7 @@ function onScroll() {
     const isProductsVisible = productsRect.top <= window.innerHeight && productsRect.bottom >= 0;
 
     if (isAboutVisible) {
-        model.scale.set(1 + scrollPosition / 2000, 1 + scrollPosition / 2000, 1 + scrollPosition / 2000);
+        model.scale.set(1 + scrollPosition / 3000, 1 + scrollPosition / 3000, 1 + scrollPosition / 3000);
         targetRotation = (scrollPosition * -Math.PI) / -1700;
     } else if (isProductsVisible) {
         model.scale.set(1 - scrollPosition / 1000, 1 - scrollPosition / 1000, 1 - scrollPosition / 1000);
