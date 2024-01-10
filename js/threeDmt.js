@@ -109,7 +109,22 @@ renderer.toneMapping = THREE.ACESFilmicToneMapping;
 
 function onScroll() {
     const scrollPosition = window.scrollY;
-    targetRotation = (scrollPosition * -Math.PI) / -360;
+
+    const aboutSection = document.getElementById("about");
+    const aboutRect = aboutSection.getBoundingClientRect();
+    const isAboutVisible = aboutRect.top <= window.innerHeight && aboutRect.bottom >= 0;
+
+    const productsSection = document.getElementById("products");
+    const productsRect = productsSection.getBoundingClientRect();
+    const isProductsVisible = productsRect.top <= window.innerHeight && productsRect.bottom >= 0;
+
+    if (isAboutVisible) {
+        targetRotation = (scrollPosition * -Math.PI) / -900;
+    } else if (isProductsVisible) {
+        targetRotation = (scrollPosition * -Math.PI) / -600;
+    } else {
+        targetRotation = (scrollPosition * -Math.PI) / -360;
+    }
 }
 
 function onResize() {
