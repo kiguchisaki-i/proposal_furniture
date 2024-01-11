@@ -64,7 +64,7 @@ renderer.toneMapping = THREE.ACESFilmicToneMapping;
         10000
     );
 
-    camera.position.set(-20, 30, 50);
+    camera.position.set(80, 30, 60);
     camera.lookAt(new THREE.Vector3(0, 10, 0));
 
     dirLight = new THREE.SpotLight(0xffffff, 1.5);
@@ -79,7 +79,7 @@ renderer.toneMapping = THREE.ACESFilmicToneMapping;
     const loader = new GLTFLoader();
 
     loader.load(
-        "./object/sofa.glb",
+        "./object/sofa2.glb",
         function (gltf) {
             model = gltf.scene;
             model.traverse((object) => {
