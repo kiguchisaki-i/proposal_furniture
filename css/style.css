@@ -239,6 +239,8 @@ main section.products {
   margin: 0 auto;
   margin-bottom: 400px;
   padding-top: 50px;
+  position: relative;
+  z-index: 2;
 }
 main section.products .products__grid {
   display: grid;
@@ -286,6 +288,8 @@ main section.contact {
   padding-top: clamp(32px, 5.33vw, 64px);
   padding-bottom: clamp(30px, 4.83vw, 58px);
   margin-top: 142px;
+  position: relative;
+  z-index: 2;
 }
 main section.contact div {
   text-align: center;
@@ -350,14 +354,16 @@ footer {
 
 #furnitureCanvasWrap {
   position: fixed;
-  left: 0;
+  left: 50%;
   top: 0;
-  z-index: 9;
+  transform: translateX(-50%);
+  z-index: 1;
   pointer-events: none;
+  max-width: 1920px;
+  width: clamp(300px, 80vw, 1920px);
 }
 #furnitureCanvasWrap canvas {
-  max-width: 100vw;
-  max-height: 100vw;
+  max-width: 100%;
   -o-object-fit: contain;
      object-fit: contain;
 }

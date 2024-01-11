@@ -56,9 +56,12 @@ table {
 }
 $z-index: (
     about-pc: -1,
+    canvas-pc: 1,
+    products-pc: 2,
     productitem-pc: 2,
+    contact-pc: 2,
     header-pc: 3,
-    canvas-pc: 9,
+    
 );
 
 header {
@@ -264,6 +267,8 @@ main {
             margin: 0 auto;
             margin-bottom: 400px;
             padding-top: 50px;
+            position:relative;
+            z-index: map-get($z-index, 'products-pc' );
 
             .products__grid {
                 display: grid;
@@ -318,6 +323,8 @@ main {
             padding-top: clamp(32px, 5.33vw, 64px);
             padding-bottom: clamp(30px, 4.83vw, 58px);
             margin-top: 142px;
+            position: relative;
+            z-index: map-get($z-index, 'contact-pc' );
             div {
                 text-align: center;
                 display: flex;
@@ -384,16 +391,17 @@ footer {
 
 #furnitureCanvasWrap{
     position: fixed;
-    left: 0;
+    left: 50%;
     top: 0;
+    transform: translateX(-50%);
     z-index: map-get($z-index, 'canvas-pc' );
     pointer-events: none;
+    max-width: 1920px;
+    width: clamp(300px, 80vw, 1920px);
 
     canvas{
-        max-width: 100vw;
-        max-height: 100vw;
+        max-width: 100%;
         object-fit: contain;
-        
     }
 }
 

@@ -119,14 +119,14 @@ function onScroll() {
     const isProductsVisible = productsRect.top <= window.innerHeight && productsRect.bottom >= 0;
 
     if (isAboutVisible) {
-        model.scale.set(1 + scrollPosition / 3000, 1 + scrollPosition / 3000, 1 + scrollPosition / 3000);
+        model.scale.set(1.2 + scrollPosition / 2700, 1.2 + scrollPosition / 2700, 1.2 + scrollPosition / 2700);
         targetRotation = (scrollPosition * -Math.PI) / -1700;
     } else if (isProductsVisible) {
-        model.scale.set(1 - scrollPosition / 1000, 1 - scrollPosition / 1000, 1 - scrollPosition / 1000);
-        targetRotation = (scrollPosition * -Math.PI) / -600;
+        model.scale.set(1 + scrollPosition / 1500, 1 + scrollPosition / 1500, 1 + scrollPosition / 1500);
+        targetRotation = (scrollPosition * -Math.PI) / -1400;
     } else {
-        model.scale.set(1, 1, 1);
-        targetRotation = (scrollPosition * -Math.PI) / -500;
+        model.scale.set(1.2 + scrollPosition / 3000, 1.2 + scrollPosition / 3000, 1.2 + scrollPosition / 3000);
+        targetRotation = (scrollPosition * -Math.PI) / -2000;
     }
 }
 
