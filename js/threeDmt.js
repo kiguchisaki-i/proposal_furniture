@@ -30,8 +30,8 @@ function init() {
         10000
     );
 
-    camera.position.set(40, 25, -85);
-    camera.lookAt(new THREE.Vector3(0, 20, -40));
+    camera.position.set(50, 10, 10);
+    camera.lookAt(new THREE.Vector3(0, 10, -10));
 
     // 注意: OrbitControls を使わないことで削除
     // const controls = new OrbitControls(camera, renderer.domElement);
@@ -85,14 +85,15 @@ function onScroll() {
     let rotationAngle = (scrollPosition * -Math.PI) / 360;
 
     // 90度で止まるように制限
-    if (rotationAngle <= -Math.PI / 0.6) {
-        rotationAngle = -Math.PI / 0.6;
+    if (rotationAngle <= -Math.PI / 0.5) {
+        rotationAngle = -Math.PI / 0.5;
     }
 
     // ここに物体の動きに関するコードを追加
     if (model) {
         model.rotation.y = rotationAngle;
         model.position.y = Math.sin(rotationAngle) * -10;
+        // model.position.x = Math.cos(rotationAngle) * -30;
         model.scale.set(1 + Math.abs(Math.sin(rotationAngle)), 1, 1);
     }
 
