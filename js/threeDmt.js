@@ -51,7 +51,7 @@ function init() {
     const loader = new GLTFLoader();
 
     loader.load(
-        "./object/sofa.glb",
+        "./object/sofa2.glb",
         function (gltf) {
             model = gltf.scene;
             model.traverse((object) => {
