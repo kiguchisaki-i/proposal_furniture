@@ -74,3 +74,24 @@ targets.forEach((target) => {
         }
     );
 });
+
+const headerBtn = document.getElementById('header__btn');
+
+    headerBtn.addEventListener('click', function (event) {
+                event.preventDefault();
+                if (headerBtn.classList.contains('is-active')) {
+                    headerBtn.classList.remove('is-active');
+                    header.classList.remove('is-active');
+                } else {
+                    headerBtn.classList.add('is-active');
+                    header.classList.add('is-active');
+                }
+            });
+
+const headerUlLiAs = document.querySelectorAll('header ul li a');
+headerUlLiAs.forEach(function(a) {
+    a.addEventListener('click', function() {
+        headerBtn.classList.remove('is-active');
+        header.classList.remove('is-active');
+        });
+});
