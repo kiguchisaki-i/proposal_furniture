@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no,address=no,email=no">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400&family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="./css/products.css">
+</head>
+<body>
+    <header id="header">
+        <a href=""><img src="../img/logo.svg" alt="">Order Furniture</a>
+        <nav id="header__nav">
+            <ul>
+                <li>
+                    <a href="../index.html#about">about</a>
+                </li>
+                <li>
+                    <a href="../index.html#products">products</a>
+                </li>
+                <li>
+                    <a href="../index.html#contact">contact</a>
+                </li>
+                <li>
+                    <a href="" class="corporate"><img src="../img/logo.svg" alt=""></a>
+                </li>
+            </ul>
+        </nav>
+        <button id="header__btn">
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+    <main id="main">
+        <article>
+            
+            <div class="product__obj" id="product__obj">
+                <div id="furnitureCanvasWrap-ul"></div>
+            </div>
+            <div class="product__detail">
+                <h2>shelf</h2>
+                <p>ここに製品の説明が入ります、ここに製品の説明が入りますここに製品の説明が入ります、ここに製品の説明が入ります。<br>ここに製品の説明が入りますここに製品の説明が入ります、ここに製品の説明が入りますここに製品の説明が入りますここに製品の説明が入りますここに製品の説明が入ります。</p> 
+                <div class="product__color">
+                    <h3>color</h3>
+                    <div>
+                        <button data-product-trigger="1" class="dark-gray"></button>
+                        <button data-product-trigger="2" class="truly-black"></button>
+                        <button data-product-trigger="3" class="dark-brown"></button>
+                        <button data-product-trigger="4" class="middle-gray"></button>
+                    </div>
+                </div>
+                <div class="product__scene">
+                <div class="parallax">
+                    <img src="./img/shelf-1.png">
+                </div>
+                <div class="parallax">
+                    <img src="./img/shelf-2.png">
+                </div>
+                <div class="parallax">
+                    <img src="./img/shelf-3.png">
+                </div>
+            </div>
+            </div>
+            
+        </article>
+        <a href="" class="online-shop swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">Order in our online store</div>
+                <div class="swiper-slide" aria-hidden="true">Order in our online store</div>
+                <div class="swiper-slide" aria-hidden="true">Order in our online store</div>
+                <div class="swiper-slide" aria-hidden="true">Order in our online store</div>
+                <div class="swiper-slide" aria-hidden="true">Order in our online store</div>
+                <div class="swiper-slide" aria-hidden="true">Order in our online store</div>
+                <div class="swiper-slide" aria-hidden="true">Order in our online store</div>
+                <div class="swiper-slide" aria-hidden="true">Order in our online store</div>
+            </div>
+        </a>
+    </main>
+    <footer>©COMPRIME inc.</footer>
+    <!-- test -->
+
+    
+
+    <span id="scroll" style="position: fixed; top: 0; left: 0;"></span>
+    <span id="percent" style="position: fixed; top: 20px; left: 0;"></span>
+
+    <script type="module" src="./js/threeDmt.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/ScrollTrigger.min.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="./js/script.js"></script>
+</body>
+</html>

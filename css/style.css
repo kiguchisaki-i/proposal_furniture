@@ -84,7 +84,7 @@ header > a {
   font-size: 1.7rem;
   line-height: 1;
   align-items: center;
-  font-weight: 400;
+  font-weight: 200;
   transition: 0.3s ease-out;
 }
 header > a img {
@@ -105,7 +105,7 @@ header nav ul {
 header nav ul li a {
   text-transform: uppercase;
   font-size: 1.6rem;
-  font-weight: 400;
+  font-weight: 200;
   position: relative;
 }
 header nav ul li a::after {
@@ -336,6 +336,7 @@ footer {
   align-items: center;
   color: #fff;
   font-size: 1.3rem;
+  font-size: 200;
 }
 
 .cursor-pointer {
@@ -393,7 +394,7 @@ footer {
     padding-right: var(--padding-sp);
     padding-top: 140px;
     transition: 0.6s;
-    height: 200vw;
+    height: 250vw;
     overflow-y: hidden;
     background-color: var(--secondary-color);
     width: 100vw;

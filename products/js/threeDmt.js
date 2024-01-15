@@ -15,27 +15,8 @@ let targetRotation = 0;
 init();
 animate();
 
-function setScrollPercent() {
-    inertialScroll +=
-        ((document.documentElement.scrollTop || document.body.scrollTop) -
-            inertialScroll) *
-        0.08;
-    inertialScrollPercent = (
-        (inertialScroll /
-            ((document.documentElement.scrollHeight ||
-                document.body.scrollHeight) -
-                document.documentElement.clientHeight)) *
-        100
-    ).toFixed(2);
-
-    const scroll =
-        ((document.documentElement.scrollTop || document.body.scrollTop) /
-            ((document.documentElement.scrollHeight ||
-                document.body.scrollHeight) -
-                document.documentElement.clientHeight)) *
-        100;
-    document.getElementById("percent").innerText = inertialScrollPercent;
-    document.getElementById("scroll").innerText = Number(scroll).toFixed(2);
+function onScroll(){
+    
 }
 
 function init() {
@@ -52,20 +33,21 @@ renderer.toneMapping = THREE.ACESFilmicToneMapping;
     
 
     document
-        .getElementById("furnitureCanvasWrap")
+        .getElementById("furnitureCanvasWrap-ul")
         .appendChild(renderer.domElement);
 
     scene = new THREE.Scene();
 
     camera = new THREE.PerspectiveCamera(
-        45,
+        60,
         window.innerWidth / window.innerHeight,
-        0.1,
-        10000
+        0.01,  
+        1000
     );
 
-    camera.position.set(80, 30, 60);
-    camera.lookAt(new THREE.Vector3(0, 10, 0));
+
+    camera.position.set(80, 50, 60);
+    camera.lookAt(new THREE.Vector3(10, 0, 0));
 
     dirLight = new THREE.SpotLight(0xffffff, 1.5);
     dirLight.position.copy(camera.position);
@@ -89,6 +71,7 @@ renderer.toneMapping = THREE.ACESFilmicToneMapping;
                     object.material.depthTest = true;
                 }
             });
+            model.scale.set(2, 2, 2);
             scene.add(model);
         },
         undefined,
@@ -107,28 +90,6 @@ renderer.toneMapping = THREE.ACESFilmicToneMapping;
     window.addEventListener("resize", onResize);
 }
 
-function onScroll() {
-    const scrollPosition = window.scrollY;
-
-    const aboutSection = document.getElementById("about");
-    const aboutRect = aboutSection.getBoundingClientRect();
-    const isAboutVisible = aboutRect.top <= window.innerHeight && aboutRect.bottom >= 0;
-
-    const productsSection = document.getElementById("products");
-    const productsRect = productsSection.getBoundingClientRect();
-    const isProductsVisible = productsRect.top <= window.innerHeight && productsRect.bottom >= 0;
-
-    if (isAboutVisible) {
-        model.scale.set(1.2 + scrollPosition / 2700, 1.2 + scrollPosition / 2700, 1.2 + scrollPosition / 2700);
-        targetRotation = (scrollPosition * -Math.PI) / -1700;
-    } else if (isProductsVisible) {
-        model.scale.set(1 + scrollPosition / 1500, 1 + scrollPosition / 1500, 1 + scrollPosition / 1500);
-        targetRotation = (scrollPosition * -Math.PI) / -1400;
-    } else {
-        model.scale.set(1.2 + scrollPosition / 3000, 1.2 + scrollPosition / 3000, 1.2 + scrollPosition / 3000);
-        targetRotation = (scrollPosition * -Math.PI) / -2000;
-    }
-}
 
 function onResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
