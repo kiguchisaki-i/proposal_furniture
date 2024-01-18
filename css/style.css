@@ -18,7 +18,7 @@ html {
   letter-spacing: 0.06em;
 }
 *::before, *::after {
-  all: unset;
+  all: inherit;
 }
 
 img {

@@ -7,8 +7,10 @@ let renderer;
 let model;
 let dirLight;
 
+/*
 let inertialScroll = 0;
 let inertialScrollPercent = 0;
+*/
 
 let targetRotation = 0;
 
@@ -39,14 +41,14 @@ renderer.toneMapping = THREE.ACESFilmicToneMapping;
     scene = new THREE.Scene();
 
     camera = new THREE.PerspectiveCamera(
-        60,
+        50,
         window.innerWidth / window.innerHeight,
-        0.01,  
+        0.001,  
         1000
     );
 
 
-    camera.position.set(80, 50, 60);
+    camera.position.set(80, 50, 70);
     camera.lookAt(new THREE.Vector3(10, 0, 0));
 
     dirLight = new THREE.SpotLight(0xffffff, 1.5);
@@ -60,29 +62,37 @@ renderer.toneMapping = THREE.ACESFilmicToneMapping;
 
     const loader = new GLTFLoader();
 
+    var filepaths = [
+    "./object/sofa-var-3.glb",
+    "./object/another-object.glb",
+];
+
+// 各ファイルを非同期でロードする
+for (var i = 0; i < filepaths.length; i++) {
     loader.load(
-        "./object/sofa2.glb",
+        filepaths[i],
         function (gltf) {
-            model = gltf.scene;
-            model.traverse((object) => {
+            var loadedModel = gltf.scene;
+            loadedModel.traverse((object) => {
                 if (object.isMesh) {
                     object.material.transparent = true;
                     object.material.opacity = 1;
                     object.material.depthTest = true;
                 }
             });
-            model.scale.set(2, 2, 2);
-            scene.add(model);
+            loadedModel.scale.set(3, 3, 3);
+            scene.add(loadedModel);
         },
         undefined,
         function (e) {
             console.error(e);
         }
     );
+}
 
     window.addEventListener("scroll", function () {
-        onScroll();
-        setScrollPercent();
+        /*onScroll();
+        setScrollPercent();*/
     });
     window.addEventListener("resize", onResize);
 
@@ -97,14 +107,36 @@ function onResize() {
     renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
+function stopRotation() {
+    gsap.to(model.rotation, { duration: 1, x: model.rotation.x, y: model.rotation.y, z: model.rotation.z });
+    setTimeout(() => {
+        gsap.to(model.rotation, { duration: 10, x: model.rotation.x + Math.random(), y: model.rotation.y + Math.random(), z: model.rotation.z });
+    }, 30000); 
+}
+
+renderer.domElement.addEventListener('mouseover', function () {
+    stopRotation(); 
+});
+
+renderer.domElement.addEventListener('mouseout', function () {
+    gsap.to(model.rotation, { duration: 10, x: model.rotation.x + Math.random(), y: model.rotation.y + Math.random(), z: model.rotation.z });
+});
+
+
 function animate() {
     requestAnimationFrame(animate);
 
     dirLight.position.copy(camera.position);
 
     if (model) {
+        if (!model.userData.animationStarted) {
+            stopRotation();
+            model.userData.animationStarted = true;
+        }
+
         model.rotation.y += (targetRotation - model.rotation.y) * 0.1;
-    }
+    }0
 
     renderer.render(scene, camera);
 }
+
