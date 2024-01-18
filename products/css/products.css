@@ -139,6 +139,7 @@ main .online-shop .swiper-wrapper .swiper-slide {
   font-size: 6.6rem;
   color: #fff;
   transition: 0.4s;
+  white-space: pre;
 }
 @media (hover: hover) {
   main .online-shop:hover .swiper-wrapper .swiper-slide {
