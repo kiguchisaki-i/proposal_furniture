@@ -58,7 +58,7 @@ targets.forEach((target) => {
         target.querySelector("img"),
         {
             y: 0,
-            scale: 1.3,
+            scale: 1.5,
         },
         {
             y: -60,

@@ -41,40 +41,50 @@
             <div class="product__obj" id="product__obj">
                 <div id="furnitureCanvasWrap-pr">
                     <div data-product-obj="1">
-                        <model-viewer alt="" class="product-obj" src="./object/sofa.glb" auto-rotate autoplay></model-viewer>
+                        <model-viewer alt="" class="product-obj" src="./object/shelf.glb" auto-rotate autoplay></model-viewer>
                     </div>
                     <div data-product-obj="2">
-                        <model-viewer alt="" class="product-obj" src="./object/sofa-var-1.glb"  auto-rotate autoplay></model-viewer>
+                        <model-viewer alt="" class="product-obj" src="./object/shelf-var-1.glb"  auto-rotate autoplay></model-viewer>
                     </div>
                     <div data-product-obj="3">
-                        <model-viewer alt="" class="product-obj" src="./object/sofa-var-2.glb"  auto-rotate autoplay></model-viewer>
+                        <model-viewer alt="" class="product-obj" src="./object/shelf-var-2.glb"  auto-rotate autoplay></model-viewer>
                     </div>
                     <div data-product-obj="4">
-                        <model-viewer alt="" class="product-obj" src="./object/sofa-var-3.glb"  auto-rotate autoplay></model-viewer>
+                        <model-viewer alt="" class="product-obj" src="./object/shelf-var-3.glb"  auto-rotate autoplay></model-viewer>
                     </div>
                 </div>
             </div>
             <div class="product__detail">
                 <h2>shelf</h2>
-                <p>空間をおしゃれにアップデートするなら、こちらのシェルフがおすすめです。<br>シンプルで使いやすいデザインが特徴で、お部屋のアクセントにピッタリ。<br>様々なカラーオプションで、お好みに合わせて選べます。<br>コンパクトなサイズから広々としたものまで、さまざまなスペースにフィット。</p> 
                 <div class="product__color">
                     <h3>color</h3>
                     <div>
-                        <button data-product-trigger="1" class="yellow-brown"></button>
-                        <button data-product-trigger="2" class="orange-brown"></button>
-                        <button data-product-trigger="3" class="truly-black"></button>
-                        <button data-product-trigger="4" class="light-beige"></button>
+                        <button data-product-trigger="1" class="dark-grey"></button>
+                        <button data-product-trigger="2" class="truly-black"></button>
+                        <button data-product-trigger="3" class="dark-brown"></button>
+                        <button data-product-trigger="4" class="middle-grey"></button>
                     </div>
                 </div>
+                <p>空間をおしゃれにアップデートするなら、こちらのシェルフがおすすめです。<br>シンプルで使いやすいデザインが特徴で、お部屋のアクセントにピッタリ。<br>様々なカラーオプションで、お好みに合わせて選べます。<br>コンパクトなサイズから広々としたものまで、さまざまなスペースにフィット。</p> 
+                
                 <div class="product__scene">
                 <div class="parallax">
-                    <img src="./img/shelf-1.png">
+                    <picture>
+                        <source srcset="./img/shelf-1.webp" type="image/webp">
+                        <img src="./img/shelf-1.jpg" alt="">
+                    </picture>
                 </div>
                 <div class="parallax">
-                    <img src="./img/shelf-2.png">
+                    <picture>
+                        <source srcset="./img/shelf-2.webp" type="image/webp">
+                        <img src="./img/shelf-2.jpg" alt="">
+                    </picture>
                 </div>
                 <div class="parallax">
-                    <img src="./img/shelf-3.png">
+                    <picture>
+                        <source srcset="./img/shelf-3.webp" type="image/webp">
+                        <img src="./img/shelf-3.jpg" alt="">
+                    </picture>
                 </div>
             </div>
             </div>
@@ -93,13 +103,12 @@
         </a>
     </main>
     <footer>©COMPRIME inc.</footer>
-    <!-- test -->
+    
 
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <script type="module">
         const modelViewer = document.querySelector('.product-obj');
         const rotateSpeed = 3;
-
         let i = 0;
         const play = () => {
             modelViewer.timeScale = rotateSpeed;

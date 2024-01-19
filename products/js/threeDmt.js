@@ -33,20 +33,17 @@ function init() {
     renderer.outputEncoding = THREE.sRGBEncoding;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
     
-
     document
         .getElementById("furnitureCanvasWrap-ul")
         .appendChild(renderer.domElement);
 
     scene = new THREE.Scene();
-
     camera = new THREE.PerspectiveCamera(
         50,
         window.innerWidth / window.innerHeight,
         0.001,  
         1000
     );
-
 
     camera.position.set(80, 50, 70);
     camera.lookAt(new THREE.Vector3(10, 0, 0));
@@ -100,7 +97,6 @@ for (var i = 0; i < filepaths.length; i++) {
     window.addEventListener("resize", onResize);
 }
 
-
 function onResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
@@ -122,7 +118,6 @@ renderer.domElement.addEventListener('mouseout', function () {
     gsap.to(model.rotation, { duration: 10, x: model.rotation.x + Math.random(), y: model.rotation.y + Math.random(), z: model.rotation.z });
 });
 
-
 function animate() {
     requestAnimationFrame(animate);
 
@@ -135,7 +130,7 @@ function animate() {
         }
 
         model.rotation.y += (targetRotation - model.rotation.y) * 0.1;
-    }0
+    }
 
     renderer.render(scene, camera);
 }

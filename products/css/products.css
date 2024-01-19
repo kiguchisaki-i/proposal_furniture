@@ -18,6 +18,7 @@ main article .product__obj #furnitureCanvasWrap-pr > div {
   top: 0;
   left: 0;
   overflow: hidden;
+  margin-top: 50px;
 }
 main article .product__obj #furnitureCanvasWrap-pr > div model-viewer {
   width: 100%;
@@ -31,7 +32,6 @@ main article .product__detail {
 main article .product__detail h2 {
   font-size: clamp(2rem, 2vw, 4.6rem);
   line-height: 1;
-  margin-bottom: 64px;
 }
 main article .product__detail p {
   font-size: clamp(1.3rem, 1.17vw, 1.5rem);
@@ -39,6 +39,7 @@ main article .product__detail p {
 }
 main article .product__detail .product__color {
   margin-top: 40px;
+  margin-bottom: 24px;
 }
 main article .product__detail .product__color h3 {
   text-transform: uppercase;
@@ -68,10 +69,10 @@ main article .product__detail .product__color div button.orange-brown {
 main article .product__detail .product__color div button.dark-brown {
   background-color: #5a3f30;
 }
-main article .product__detail .product__color div button.middle-gray {
+main article .product__detail .product__color div button.middle-grey {
   background-color: #848c8c;
 }
-main article .product__detail .product__color div button.dark-gray {
+main article .product__detail .product__color div button.dark-grey {
   background-color: #4a4a4a;
 }
 main article .product__detail .product__color div button.truly-black {
@@ -93,6 +94,7 @@ main article .product__detail .product__color div button.is-active::after {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-bottom: 2px;
 }
 main article .product__detail .product__scene {
   width: calc(100% + var(--padding-pc));
@@ -176,6 +178,7 @@ main .online-shop .swiper-wrapper .swiper-slide {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+    margin-top: 20px;
   }
   main article .product__detail h2 {
     margin-bottom: clamp(16px, 4.44vw, 32px);
@@ -184,6 +187,11 @@ main .online-shop .swiper-wrapper .swiper-slide {
   main article .product__detail p {
     font-size: clamp(1.1rem, 3.44vw, 1.3rem);
     order: 3;
+  }
+  main article .product__detail p br {
+    display: block;
+    content: "";
+    margin-top: clamp(0.6rem, 1.88vw, 1.1rem);
   }
   main article .product__detail .product__color {
     order: 2;
@@ -195,6 +203,9 @@ main .online-shop .swiper-wrapper .swiper-slide {
   }
   main article .product__detail .product__color div {
     gap: clamp(8px, 2.5vw, 14px);
+  }
+  main article .product__detail .product__color div button.is-active::after {
+    padding-bottom: 0;
   }
   main article .product__detail .product__scene {
     order: 4;

@@ -20,6 +20,7 @@ main {
                     top: 0;
                     left: 0;
                     overflow: hidden;
+                    margin-top: 50px;
 
                     model-viewer{
                         width: 100%;
@@ -36,7 +37,6 @@ main {
             h2 {
                 font-size: clamp(2rem, 2vw, 4.6rem);
                 line-height: 1;
-                margin-bottom: 64px;
             }
             p {
                 font-size: clamp(1.3rem, 1.17vw, 1.5rem);
@@ -44,6 +44,8 @@ main {
             }
             .product__color {
                 margin-top: 40px;
+                margin-bottom: 24px;
+
                 h3 {
                     text-transform: uppercase;
                     font-size: clamp(1.4rem, 1.25vw, 1.6rem);
@@ -71,10 +73,10 @@ main {
                         &.dark-brown {
                             background-color: #5a3f30;
                         }
-                        &.middle-gray {
+                        &.middle-grey {
                             background-color: #848c8c;
                         }
-                        &.dark-gray {
+                        &.dark-grey {
                             background-color: #4a4a4a;
                         }
                         &.truly-black {
@@ -96,6 +98,7 @@ main {
                                 display: flex;
                                 justify-content: center;
                                 align-items: center;
+                                padding-bottom: 2px;
                             }
                         }
                     }
@@ -195,6 +198,7 @@ main {
                 margin: 0 auto;
                 display: flex;
                 flex-direction: column;
+                margin-top: 20px;
 
                 h2{
                     margin-bottom: clamp(16px, 4.44vw, 32px);
@@ -204,6 +208,12 @@ main {
                 p{
                     font-size: clamp(1.1rem, 3.44vw, 1.3rem);
                     order: 3;
+                    
+                    br{
+                        display: block;
+                        content: '';
+                        margin-top: clamp(0.6rem, 1.88vw, 1.1rem);
+                    }
                 }
 
                 .product__color{
@@ -215,6 +225,14 @@ main {
                     }
                     div{
                         gap: clamp(8px, 2.5vw, 14px);
+
+                        button{
+                            &.is-active{
+                                &::after{
+                                    padding-bottom: 0;
+                                }
+                            }
+                        }
                     }
                 }
                 .product__scene{
